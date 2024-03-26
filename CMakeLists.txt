@@ -8,9 +8,6 @@ include(${CMAKE_CURRENT_LIST_DIR}/lib/FreeRTOS/FreeRTOS/Source/portable/ThirdPar
 
 project(pico_experiments VERSION 0.1.0 LANGUAGES C CXX ASM)
 
-
-
-
 set(PICO_BOARD "pico_w")
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_C_STANDARD 11)
