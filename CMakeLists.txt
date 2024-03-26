@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
-include($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)
-include($ENV{FREERTOS_SDK_PATH}/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/FreeRTOS_Kernel_import.cmake)
+include(lib/FreeRTOS/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/pico_sdk_import.cmake)
+include(lib/PicoSDK/pico_sdk_init.cmake)
 
 set(FREERTOS_KERNEL_PATH $ENV{FREERTOS_SDK_PATH}/FreeRTOS/Source)
 
