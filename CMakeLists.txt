@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 3.12)
 include(lib/FreeRTOS/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/pico_sdk_import.cmake)
 include(lib/PicoSDK/pico_sdk_init.cmake)
 
-set(FREERTOS_KERNEL_PATH $ENV{FREERTOS_SDK_PATH}/FreeRTOS/Source)
-
 project(pico_experiments VERSION 0.1.0 LANGUAGES C CXX)
+
+set(PICO_SDK_PATH ${PROJECT_SOURCE_DIR}/lib/PicoSDK)
+set(FREERTOS_KERNEL_PATH ${PROJECT_SOURCE_DIR}/lib/FreeRTOS/FreeRTOS/Source)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_C_STANDARD 11)
