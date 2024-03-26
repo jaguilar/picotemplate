@@ -1,17 +1,10 @@
-#ifndef LWIPOPTS_H
-#define LWIPOPTS_H
-
-#define LWIP_TIMEVAL_PRIVATE 0
+#ifndef _LWIPOPTS_EXAMPLE_COMMONH_H
+#define _LWIPOPTS_EXAMPLE_COMMONH_H
 
 // Common settings used in most of the pico_w examples
 // (see https://www.nongnu.org/lwip/2_1_x/group__lwip__opts.html for details)
 
-#if PICO_CYW43_ARCH_POLL
-#define MEM_LIBC_MALLOC 1
-#else
-// MEM_LIBC_MALLOC is incompatible with non polling versions
-#define MEM_LIBC_MALLOC 0
-#endif
+// allow override in some examples
 #define MEM_ALIGNMENT 4
 #define MEM_SIZE 4000
 #define MEMP_NUM_TCP_SEG 32
@@ -51,8 +44,6 @@
 #define LWIP_STATS_DISPLAY 1
 #endif
 
-#define portTICK_RATE_MS portTICK_PERIOD_MS
-
 #define ETHARP_DEBUG LWIP_DBG_OFF
 #define NETIF_DEBUG LWIP_DBG_OFF
 #define PBUF_DEBUG LWIP_DBG_OFF
@@ -82,4 +73,7 @@
 #define SLIP_DEBUG LWIP_DBG_OFF
 #define DHCP_DEBUG LWIP_DBG_OFF
 
-#endif /* LWIPOPTS_H */
+#define portTICK_RATE_MS portTICK_PERIOD_MS
+#define LWIP_TIMEVAL_PRIVATE 0
+
+#endif /* __LWIPOPTS_H__ */

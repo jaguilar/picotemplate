@@ -18,9 +18,6 @@ void main_task(void *arg) {
 
 static TaskHandle_t g_main_handle;
 
-int main() {
+void start_initial_tasks() {
   xTaskCreate(main_task, "main_task", 1024, (void *)1, 1, &g_main_handle);
-  vTaskStartScheduler();
-  while (1) {
-  };
 }
