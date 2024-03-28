@@ -21,3 +21,4 @@ target_link_options(common PUBLIC -Wl,--gc-sections -z max-page-size=4096)
 
 add_subdirectory(blink)
 add_subdirectory(tcp_echo)
+add_subdirectory(hello_mqtt)
