@@ -15,19 +15,9 @@ target_link_libraries(common PUBLIC
 target_compile_options(
     common 
     PUBLIC -fdata-sections -ffunction-sections 
-    PRIVATE -DWIFI_PASSWORD="${WIFI_PASSWORD}" -DWIFI_SSID="${WIFI_SSID}")
+    PRIVATE -DWIFI_PASSWORD="${WIFI_PASSWORD}" -DWIFI_SSID="${WIFI_SSID}" -DCYW43_HOST_NAME="picotest")
 
 target_link_options(common PUBLIC -Wl,--gc-sections -z max-page-size=4096)
 
-add_executable(blink blink.c)
-target_link_libraries(blink PRIVATE common)
-pico_add_extra_outputs(blink)
-pico_enable_stdio_usb(blink 1)
-pico_enable_stdio_uart(blink 0)
-
-add_executable(tcp_echo tcp_echo.c)
-target_link_libraries(tcp_echo PRIVATE common)
-pico_add_extra_outputs(tcp_echo)
-pico_enable_stdio_usb(tcp_echo 1)
-pico_enable_stdio_uart(tcp_echo 0)
-
+add_subdirectory(blink)
+add_subdirectory(tcp_echo)
