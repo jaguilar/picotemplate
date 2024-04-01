@@ -11,7 +11,7 @@ target_compile_options(
     common 
     PRIVATE -DWIFI_PASSWORD="${WIFI_PASSWORD}" -DWIFI_SSID="${WIFI_SSID}" -DCYW43_HOST_NAME="picotest")
 
-function(pico_executable name)
+function(add_pico_executable name)
   add_executable(${name} ${ARGN})
   pico_add_extra_outputs(${name})
   pico_enable_stdio_usb(${name} 1)
