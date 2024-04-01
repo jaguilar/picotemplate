@@ -1,9 +1,8 @@
-#include <FreeRTOS.h>
-
 #include <memory>
 #include <string>
 #include <variant>
 
+#include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
 #include "lwip/api.h"
 #include "lwip/apps/mqtt.h"
@@ -20,6 +19,7 @@
 #include "portmacro.h"
 #include "projdefs.h"
 #include "semphr.h"
+#include "shared_init.h"
 #include "task.h"
 
 class PingPongClient {
@@ -144,6 +144,7 @@ class PingPongClient {
   int num_expected_items_ = 0;
 };
 
-extern "C" void start_initial_tasks() {
+extern "C" void main_task(void*) {
   PingPongClient::Create(*(new std::unique_ptr<PingPongClient>));
+  vTaskDelete(NULL);  // We aren't keeping the main_task around.
 }

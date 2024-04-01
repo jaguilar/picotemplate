@@ -1,24 +1,24 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(common STATIC shared_init.c FreeRTOSConfig.h)
+add_library(common STATIC shared_init.c shared_init.h)
 target_link_libraries(common PUBLIC 
-    FreeRTOS-Kernel 
-    FreeRTOS-Kernel-Heap4 
-    pico_cyw43_arch_lwip_sys_freertos 
-    pico_lwip_api 
-    pico_lwip_core 
-    pico_lwip_freertos 
-    pico_lwip_mdns 
-    pico_stdlib 
+    freertos
+    lwip
+    pico_stdlib
     pico_sync
 )
 target_compile_options(
     common 
-    PUBLIC -fdata-sections -ffunction-sections 
     PRIVATE -DWIFI_PASSWORD="${WIFI_PASSWORD}" -DWIFI_SSID="${WIFI_SSID}" -DCYW43_HOST_NAME="picotest")
 
-target_link_options(common PUBLIC -Wl,--gc-sections -z max-page-size=4096)
+function(pico_executable name)
+  add_executable(${name} ${ARGN})
+  pico_add_extra_outputs(${name})
+  pico_enable_stdio_usb(${name} 1)
+  pico_enable_stdio_uart(${name} 0)
+endfunction()
 
 add_subdirectory(blink)
 add_subdirectory(tcp_echo)
 add_subdirectory(hello_mqtt)
+add_subdirectory(sun)

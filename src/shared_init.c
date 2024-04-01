@@ -1,3 +1,4 @@
+#include "shared_init.h"
 
 #include <FreeRTOS.h>
 #include <task.h>
@@ -34,8 +35,6 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName) {
 }
 #endif
 
-extern void start_initial_tasks();
-
 static TaskHandle_t g_init_task;
 
 static void srv_txt(struct mdns_service *service, void *txt_userdata) {
@@ -64,7 +63,7 @@ static void tcpip_hwm_watcher(void *) {
   }
 }
 
-static void init_task(void *unused) {
+static void init_task(void *arg) {
   printf("will initialize wifi\n");
 #ifdef RASPBERRYPI_PICO_W
   if (cyw43_arch_init_with_country(CYW43_COUNTRY_USA)) {
@@ -102,8 +101,7 @@ static void init_task(void *unused) {
   mdns_resp_announce(netif_default);
 #endif  // LWIP_MDNS_RESPONDER
 #endif  // RASPBERRYPI_PICO_W
-  start_initial_tasks();
-  vTaskDelete(g_init_task);
+  main_task(arg);
 }
 
 int main(void) {
