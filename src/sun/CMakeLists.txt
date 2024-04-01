@@ -1,0 +1,2 @@
+add_pico_executable(exec_2_1 src_2_1.cc)
+target_link_libraries(exec_2_1 common_nonet)

@@ -6,12 +6,17 @@
 #include "FreeRTOSConfig.h"
 #include "cyw43_country.h"
 #include "cyw43_ll.h"
-#include "lwip/apps/mdns.h"
-#include "lwip/debug.h"
 #include "pico/cyw43_arch.h"
 #include "pico/stdlib.h"
 #include "portmacro.h"
 #include "projdefs.h"
+
+#if LWIP_MDNS_RESPONDER
+#include "lwip/apps/mdns.h"
+#endif
+#if LWIP_DEBUG
+#include "lwip/debug.h"
+#endif
 
 void WaitForeverInCriticalSection() {
   portDISABLE_INTERRUPTS();
@@ -37,6 +42,7 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName) {
 
 static TaskHandle_t g_init_task;
 
+#if LWIP_MDNS_RESPONDER
 static void srv_txt(struct mdns_service *service, void *txt_userdata) {
   err_t res;
   LWIP_UNUSED_ARG(txt_userdata);
@@ -50,18 +56,7 @@ static void mdns_example_report(struct netif *netif, u8_t result,
   LWIP_PLATFORM_DIAG(
       ("mdns status[netif %d][service %d]: %d\n", netif->num, service, result));
 }
-
-static void tcpip_hwm_watcher(void *) {
-  TaskHandle_t task = NULL;
-  while (task == NULL) {
-    task = xTaskGetHandle("tcpip_thread");
-    if (task == NULL) vTaskDelay(pdMS_TO_TICKS(1000));
-  }
-  while (1) {
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    printf("TCP HWM: %d\n", uxTaskGetStackHighWaterMark(task));
-  }
-}
+#endif
 
 static void init_task(void *arg) {
   printf("will initialize wifi\n");
@@ -71,10 +66,8 @@ static void init_task(void *arg) {
     WaitForeverInCriticalSection();
   }
   printf("wifi init done\n");
+#if CYW43_LWIP
   cyw43_arch_enable_sta_mode();
-
-  xTaskCreate(tcpip_hwm_watcher, "tcpip_hwm_watcher", 256, NULL, 1, NULL);
-
   printf("will connect wifi\n");
   {
     int error;
@@ -91,7 +84,7 @@ static void init_task(void *arg) {
     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
     vTaskDelay(pdMS_TO_TICKS(100));
   }
-
+#endif
 #if LWIP_MDNS_RESPONDER
   mdns_resp_register_name_result_cb(mdns_example_report);
   mdns_resp_init();
