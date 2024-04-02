@@ -8,3 +8,11 @@ target_compile_features(exec_2_2 PUBLIC cxx_std_23)
 add_pico_executable(exec_2_3 src_2_3.cc)
 target_link_libraries(exec_2_3 common_nonet hardware_pwm)
 target_compile_features(exec_2_3 PUBLIC cxx_std_23)
+
+add_pico_executable(exec_2_4 src_2_4.cc)
+target_link_libraries(exec_2_4 common_nonet hardware_pwm)
+target_compile_features(exec_2_4 PUBLIC cxx_std_23)
+
+add_pico_executable(exec_2_5 src_2_5.cc)
+target_link_libraries(exec_2_5 common_nonet hardware_gpio)
+target_compile_features(exec_2_5 PUBLIC cxx_std_23)
