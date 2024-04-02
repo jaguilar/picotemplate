@@ -23,8 +23,8 @@ target_link_libraries(common_nonet PUBLIC
 function(add_pico_executable name)
   add_executable(${name} ${ARGN})
   pico_add_extra_outputs(${name})
-  pico_enable_stdio_usb(${name} 1)
-  pico_enable_stdio_uart(${name} 0)
+  pico_enable_stdio_usb(${name} 0)
+  pico_enable_stdio_uart(${name} 1)
 endfunction()
 
 add_subdirectory(blink)
