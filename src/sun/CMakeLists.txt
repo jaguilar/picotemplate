@@ -16,3 +16,12 @@ target_compile_features(exec_2_4 PUBLIC cxx_std_23)
 add_pico_executable(exec_2_5 src_2_5.cc)
 target_link_libraries(exec_2_5 common_nonet hardware_gpio)
 target_compile_features(exec_2_5 PUBLIC cxx_std_23)
+
+
+
+add_pico_executable(exec_5_1 src_5_1.cc)
+target_link_libraries(exec_5_1 common_nonet hardware_gpio hardware_spi Profiler)
+target_compile_features(exec_5_1 PUBLIC cxx_std_23)
+
+# Add a PIO build rule for cd74hc595.pio
+pico_generate_pio_header(exec_5_1 ${CMAKE_CURRENT_LIST_DIR}/cd74hc595.pio)

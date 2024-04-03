@@ -1,3 +1,4 @@
+#include <cassert>
 #include <memory>
 #include <optional>
 #include <type_traits>
@@ -17,7 +18,9 @@ class Queue {
                 "Queue cannot contain non-POD types");
 
   Queue() = delete;
-  Queue(int size) : queue_(xQueueCreate(size, sizeof(T))) {}
+  Queue(int size) : queue_(xQueueCreate(size, sizeof(T))) {
+    assert(size >= 1);
+  }
   Queue(const Queue&) = delete;
   Queue& operator=(const Queue&) = delete;
   Queue& operator=(Queue&& q) = delete;

@@ -9,6 +9,7 @@ set(FREERTOS_PORT GCC_RP2040 CACHE STRING "")
 include(${CMAKE_CURRENT_LIST_DIR}/lib/PicoSDK/external/pico_sdk_import.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/lib/FreeRTOS/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/FreeRTOS_Kernel_import.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/secrets.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/lib/SysprogsProfilerFramework/CMakeLists.txt)
 
 project(pico_experiments VERSION 0.1.0 LANGUAGES C CXX ASM)
 
