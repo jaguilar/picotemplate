@@ -7,3 +7,6 @@
 [submodule "lib/lwip-cpp"]
 	path = lib/lwip-cpp
 	url = https://github.com/jaguilar/lwip-cpp.git
+[submodule "lib/SysprogsProfilerFramework"]
+	path = lib/SysprogsProfilerFramework
+	url = https://github.com/sysprogs/SysprogsProfilerFramework
