@@ -1,0 +1,4 @@
+Checks: 'bugprone-*,cppcoreguidelines-*,-cppcoreguidelines-pro-bounds-constant-array-index,-cppcoreguidelines-avoid-magic-numbers'
+HeaderFilterRegex: 'lib/.*'
+FormatStyle:     google
+WarningsAsErrors: true
