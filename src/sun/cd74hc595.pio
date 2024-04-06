@@ -9,7 +9,9 @@
 ; then the outputs are flashed. Set the clock divider such that the
 ; PIO runs at 10MHz or slower.
 
-  set x, 7           side 0b10         ; moves anything in the shift register into the storage register
+  mov x, y           side 0b10         ; moves anything in the shift register into the storage register
+                                       ; Sets the countdown before we do this again to y. Y is set by the 
+                                       ; calling program as an immediate instruction.
 bitloop:
   out pins, 1        side 0b00         ; srclk low
   jmp x-- bitloop    side 0b01         ; srclk high, accepts the bit on pins, shifts the bits we've already pushed

@@ -31,3 +31,7 @@ target_link_libraries(disp_4digit PUBLIC hardware_gpio driver_cd74hc595 freertos
 
 add_pico_executable(exec_5_3 src_5_3.cc)
 target_link_libraries(exec_5_3 common_nonet hardware_pio disp_4digit driver_cd74hc595)
+
+add_pico_executable(exec_5_4 src_5_4.cc)
+target_link_libraries(exec_5_4 common_nonet hardware_gpio hardware_pio driver_cd74hc595 hardware_timer)
+target_compile_features(exec_5_4 PUBLIC cxx_std_23)
