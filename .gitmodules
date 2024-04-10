@@ -10,3 +10,6 @@
 [submodule "lib/SysprogsProfilerFramework"]
 	path = lib/SysprogsProfilerFramework
 	url = https://github.com/sysprogs/SysprogsProfilerFramework
+[submodule "lib/LiquidCrystal_I2C"]
+	path = lib/LiquidCrystal_I2C
+	url = https://github.com/johnrickman/LiquidCrystal_I2C.git
