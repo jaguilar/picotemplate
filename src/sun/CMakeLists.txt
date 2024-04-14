@@ -17,6 +17,10 @@ add_pico_executable(exec_2_5 src_2_5.cc)
 target_link_libraries(exec_2_5 common_nonet hardware_gpio)
 target_compile_features(exec_2_5 PUBLIC cxx_std_23)
 
+add_pico_executable(exec_3_4 src_3_4.cc)
+target_link_libraries(exec_3_4 PRIVATE common_nonet LiquidCrystal_I2C hardware_i2c)
+target_compile_features(exec_3_4 PRIVATE cxx_std_23)
+
 add_library(driver_cd74hc595 cd74hc595.cc cd74hc595.h)
 target_link_libraries(driver_cd74hc595 PUBLIC hardware_gpio hardware_pio PRIVATE common_nonet hardware_pio)
 pico_generate_pio_header(driver_cd74hc595 ${CMAKE_CURRENT_LIST_DIR}/cd74hc595.pio)

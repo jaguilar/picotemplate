@@ -20,6 +20,8 @@ set(CMAKE_CXX_STANDARD 23)
 
 pico_sdk_init()
 
+add_subdirectory(lib/LiquidCrystal_I2C)
+
 add_compile_options(
         -Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
