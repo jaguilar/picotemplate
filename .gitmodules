@@ -4,12 +4,3 @@
 [submodule "lib/PicoSDK"]
 	path = lib/PicoSDK
 	url = https://github.com/raspberrypi/pico-sdk.git
-[submodule "lib/lwip-cpp"]
-	path = lib/lwip-cpp
-	url = https://github.com/jaguilar/lwip-cpp.git
-[submodule "lib/SysprogsProfilerFramework"]
-	path = lib/SysprogsProfilerFramework
-	url = https://github.com/sysprogs/SysprogsProfilerFramework
-[submodule "lib/LiquidCrystal_I2C"]
-	path = lib/LiquidCrystal_I2C
-	url = https://github.com/johnrickman/LiquidCrystal_I2C.git
