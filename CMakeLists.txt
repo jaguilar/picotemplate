@@ -8,8 +8,6 @@ set(FREERTOS_PORT GCC_RP2040 CACHE STRING "")
 
 include(${CMAKE_CURRENT_LIST_DIR}/lib/PicoSDK/external/pico_sdk_import.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/lib/FreeRTOS/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/FreeRTOS_Kernel_import.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/secrets.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/lib/SysprogsProfilerFramework/CMakeLists.txt)
 
 project(pico_experiments VERSION 0.1.0 LANGUAGES C CXX ASM)
 
@@ -18,9 +16,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 23)
 
-pico_sdk_init()
+# If initting the SDK fails, some of that fact will be cached!
+# Probably you tried to configure the project before
+# `git submodule update --init --recursive`.
 
-add_subdirectory(lib/LiquidCrystal_I2C)
+pico_sdk_init()
 
 add_compile_options(
         -Wall
@@ -48,5 +48,4 @@ target_link_libraries(lwip
         pico_lwip_core pico_lwip_freertos pico_lwip_mdns)
 
 set(LWIP_DIR "${CMAKE_CURRENT_LIST_DIR}/lib/PicoSDK/lib/lwip")
-add_subdirectory(lib/lwip-cpp)
 add_subdirectory(src)

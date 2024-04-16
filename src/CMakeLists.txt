@@ -26,8 +26,3 @@ function(add_pico_executable name)
   pico_enable_stdio_usb(${name} 0)
   pico_enable_stdio_uart(${name} 1)
 endfunction()
-
-add_subdirectory(blink)
-add_subdirectory(tcp_echo)
-add_subdirectory(hello_mqtt)
-add_subdirectory(sun)
