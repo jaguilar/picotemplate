@@ -1,6 +1,7 @@
 #include "shared_init.h"
 
 #include <FreeRTOS.h>
+#include <string.h>
 #include <task.h>
 
 #include "FreeRTOSConfig.h"
@@ -68,8 +69,9 @@ static void init_task(void *arg) {
   printf("wifi init done\n");
 #if CYW43_LWIP
   cyw43_arch_enable_sta_mode();
-  printf("will connect wifi\n");
-  {
+
+  if (strlen(WIFI_SSID) != 0) {
+    printf("will connect wifi\n");
     int error;
     if ((error = cyw43_arch_wifi_connect_blocking(
              WIFI_SSID, WIFI_PASSWORD, CYW43_AUTH_WPA2_AES_PSK)) != 0) {

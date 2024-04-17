@@ -1,11 +1,15 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+set(CMAKE_C_STANDARD_REQUIRED 11)
+set(CMAKE_CXX_STANDARD_REQUIRED 23)
+
 add_library(common STATIC shared_init.c shared_init.h)
 target_link_libraries(common PUBLIC 
     freertos
     lwip
     pico_stdlib
     pico_sync
+    stdc++
 )
 target_compile_options(
     common 
@@ -17,6 +21,7 @@ target_link_libraries(common_nonet PUBLIC
     pico_stdlib
     pico_sync
     pico_cyw43_arch_none
+    stdc++
 )
 
 
